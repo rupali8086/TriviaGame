@@ -91,7 +91,7 @@ var game = {
     this.counter = window.countStartNumber;
     $("#counter-number").html(this.counter);
     this.currentQuestion++;
-    this.loadQuestion().bind(this);
+    this.loadQuestion.bind(this)();
   },
 
   timeUp: function() {
