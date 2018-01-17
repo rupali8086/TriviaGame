@@ -69,22 +69,22 @@ var game = {
     this.counter--;
     $("#counter-number").html(this.counter);
     if (this.counter === 0) {
-      alert("TIME UP");
+      // alert("TIME UP");
       console.log("Time UP");
       this.timeUp();
+      this.results();  
     }
   },
 
   loadQuestion: function() {
     timer = setInterval(this.countdown.bind(this), 1000);
-    panel.html("<h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
+    panel.html("<image src='assets/images/now.gif' id='now'><h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
     
     for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
       panel.append("<button class='answer-button btn btn-outline-secondary animated bounceInRight' id='button' data-name='" + questions[this.currentQuestion].answers[i]
       + "'>" + questions[this.currentQuestion].answers[i] + "</button>");
    }
     panel.append ("<audio controls autoplay src='assets/images/clock.mp3'  </audio>");
-    panel.append ("<image src='assets/images/now.gif' id='now'>");
   },
 
   nextQuestion: function() {
@@ -111,7 +111,7 @@ var game = {
   results: function() {
 
     clearInterval(window.timer);
-    panel.html("<h2>All done, heres how you did!</h2>");
+    panel.html("<h2>All done, here is your result!</h2>");
     $("#counter-number").html(this.counter);
     panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
     panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
