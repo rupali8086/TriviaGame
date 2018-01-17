@@ -78,7 +78,7 @@ var game = {
 
   loadQuestion: function() {
     timer = setInterval(this.countdown.bind(this), 1000);
-    panel.html("<image src='assets/images/now.gif' id='now'><h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
+    panel.html("<image src='assets/images/now.gif' id='now'> <h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
     
     for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
       panel.append("<button class='answer-button btn btn-outline-secondary animated bounceInRight' id='button' data-name='" + questions[this.currentQuestion].answers[i]
@@ -109,7 +109,7 @@ var game = {
   },
 
   results: function() {
-
+    
     clearInterval(window.timer);
     panel.html("<h2>All done, here is your result!</h2>");
     $("#counter-number").html(this.counter);
