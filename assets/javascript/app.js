@@ -84,6 +84,7 @@ var game = {
       + "'>" + questions[this.currentQuestion].answers[i] + "</button>");
    }
     panel.append ("<audio controls autoplay src='assets/images/clock.mp3'  </audio>");
+    panel.append ("<image src='assets/images/now.gif' id='now'>");
   },
 
   nextQuestion: function() {
@@ -115,7 +116,7 @@ var game = {
     panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
     panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
     panel.append("<h3>Unanswered: " + (questions.length - (this.incorrect + this.correct)) + "</h3>");
-    panel.append("<br><button id='start-over' class='animated infinite pulse'>Play Again </button>");
+    panel.append("<br><button id='start-over' class='animated  pulse infinite'>Play Again </button>");
   },
  
   clicked: function(e) {
@@ -177,5 +178,5 @@ $(document).on("click", ".answer-button", function(e) {
 
 $(document).on("click", "#start", function() {
   $("#sub-wrapper").prepend("<h4> You have [ <span id='counter-number'>30</span> ] Seconds</h4>");
-  game.loadQuestion().bind(game);
+  game.loadQuestion.bind(game)();
 });
