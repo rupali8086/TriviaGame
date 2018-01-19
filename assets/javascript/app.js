@@ -1,5 +1,7 @@
 var panel = $("#quiz-area");
 var countStartNumber = 30;
+ 
+
 
 // Question set
 var questions = [{
@@ -65,7 +67,7 @@ var game = {
   correct: 0,
   incorrect: 0,
 
-  countdown: function() {
+ countdown: function() {
     this.counter--;
     $("#counter-number").html(this.counter);
     if (this.counter === 0) {
@@ -78,7 +80,7 @@ var game = {
 
   loadQuestion: function() {
     timer = setInterval(this.countdown.bind(this), 1000);
-    panel.html("<image src='assets/images/now.gif' id='now'> <h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
+    panel.html( "<image src='assets/images/now.gif' id='now'> <h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
     
     for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
       panel.append("<button class='answer-button btn btn-outline-secondary animated bounceInRight' id='button' data-name='" + questions[this.currentQuestion].answers[i]
@@ -98,7 +100,7 @@ var game = {
 
        clearInterval(window.timer);
        panel.html("<h2> Time up </h2>");
-       panel.append("<h3> correct answer is " + questions[this.currentQuestion].correctAnswer);
+       panel.append( "<h3> correct answer is " + questions[this.currentQuestion].correctAnswer);
        panel.append("<img src='" + questions[this.currentQuestion].image + "' />");
        if (this.currentQuestion === questions.length-1) {
         setTimeout(this.results, 3*1000);
@@ -111,8 +113,11 @@ var game = {
   results: function() {
     
     clearInterval(window.timer);
-    panel.html("<h2>All done, here is your result!</h2>");
+
+    panel.html( "<h2>All done, here is your result!</h2>");
+
     $("#counter-number").html(this.counter);
+    $("#done").empty();
     panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
     panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
     panel.append("<h3>Unanswered: " + (questions.length - (this.incorrect + this.correct)) + "</h3>");
@@ -134,7 +139,7 @@ var game = {
     this.incorrect++;
     clearInterval(window.timer);
     panel.html("<h2>Wrong!</h2>");
-    panel.append("<h3>The Correct Answer is: " + questions[this.currentQuestion].correctAnswer + "</h3>");
+    panel.append( "<h3>The Correct Answer is: " + questions[this.currentQuestion].correctAnswer + "</h3>");
     panel.append("<img src='" + questions[this.currentQuestion].image + "' />");
     if (this.currentQuestion === questions.length - 1) {
       setTimeout(this.results.bind(this), 3 * 1000);
@@ -177,6 +182,8 @@ $(document).on("click", ".answer-button", function(e) {
 });
 
 $(document).on("click", "#start", function() {
-  $("#sub-wrapper").prepend("<h4> You have [ <span id='counter-number'>30</span> ] Seconds</h4>");
+  
+  $("#sub-wrapper").prepend( "<h4 id='done'> You have [ <span id='counter-number'>30</span> ] Seconds</h4>");
+  $("#sub-wrapper").prepend("<p> " + $('#name').val() + "</p>");
   game.loadQuestion.bind(game)();
 });
