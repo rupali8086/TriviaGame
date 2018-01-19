@@ -116,7 +116,6 @@ var game = {
 
     panel.html( "<h2>All done, here is your result!</h2>");
 
-    $("#counter-number").html(this.counter);
     $("#done").empty();
     panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
     panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
@@ -184,6 +183,6 @@ $(document).on("click", ".answer-button", function(e) {
 $(document).on("click", "#start", function() {
   
   $("#sub-wrapper").prepend( "<h4 id='done'> You have [ <span id='counter-number'>30</span> ] Seconds</h4>");
-  $("#sub-wrapper").prepend("<p> " + $('#name').val() + "</p>");
+  $("#sub-wrapper").prepend("<p> " + $('#name').val() + "</p><br>");
   game.loadQuestion.bind(game)();
 });
