@@ -94,6 +94,7 @@ var game = {
     $("#counter-number").html(this.counter);
     this.currentQuestion++;
     this.loadQuestion.bind(this)();
+
   },
 
   timeUp: function() {
@@ -113,10 +114,12 @@ var game = {
   results: function() {
     
     clearInterval(window.timer);
-
+    
     panel.html( "<h2>All done, here is your result!</h2>");
+     $("#counter-number").html(this.counter);
 
-    $("#done").empty();
+    $("#done").remove();
+     
     panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
     panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
     panel.append("<h3>Unanswered: " + (questions.length - (this.incorrect + this.correct)) + "</h3>");
@@ -164,11 +167,7 @@ var game = {
 
 // RESET 
   reset: function() {
-    this.currentQuestion = 0;
-    this.counter = countStartNumber;
-    this.correct = 0;
-    this.incorrect = 0;
-    this.loadQuestion();
+    location.reload();
   }
 };
 
