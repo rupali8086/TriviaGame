@@ -71,8 +71,7 @@ var game = {
     this.counter--;
     $("#counter-number").html(this.counter);
     if (this.counter === 0) {
-      // alert("TIME UP");
-      console.log("Time UP");
+      alert("TIME UP");
       this.timeUp();
       this.results();  
     }
@@ -80,20 +79,21 @@ var game = {
 
   loadQuestion: function() {
     timer = setInterval(this.countdown.bind(this), 1000);
-    panel.html( "<image src='assets/images/now.gif' id='now'> <h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
+    panel.html( "<h2 class='animated bounceInLeft'>" + questions[this.currentQuestion].question + "</h2>");
     
     for (var i = 0; i < questions[this.currentQuestion].answers.length; i++) {
       panel.append("<button class='answer-button btn btn-outline-secondary animated bounceInRight' id='button' data-name='" + questions[this.currentQuestion].answers[i]
       + "'>" + questions[this.currentQuestion].answers[i] + "</button>");
    }
     panel.append ("<audio controls autoplay src='assets/images/clock.mp3'  </audio>");
+    panel.append("<br><br><button class='btn btn-primary btn-sm' id='btn'>" + "Question  " + (this.currentQuestion + 1)  + " / " + questions.length +"</button>");
   },
 
   nextQuestion: function() {
     this.counter = window.countStartNumber;
     $("#counter-number").html(this.counter);
     this.currentQuestion++;
-    this.loadQuestion.bind(this)();
+    this.loadQuestion().bind(this);
 
   },
 
@@ -116,10 +116,8 @@ var game = {
     clearInterval(window.timer);
     
     panel.html( "<h2>All done, here is your result!</h2>");
-     $("#counter-number").html(this.counter);
-
+    $("#counter-number").html(this.counter);
     $("#done").remove();
-     
     panel.append("<h3>Correct Answers: " + this.correct + "</h3>");
     panel.append("<h3>Incorrect Answers: " + this.incorrect + "</h3>");
     panel.append("<h3>Unanswered: " + (questions.length - (this.incorrect + this.correct)) + "</h3>");
@@ -183,5 +181,5 @@ $(document).on("click", "#start", function() {
   
   $("#sub-wrapper").prepend( "<h4 id='done'> You have [ <span id='counter-number'>30</span> ] Seconds</h4>");
   $("#sub-wrapper").prepend("<p> " + $('#name').val() + "</p><br>");
-  game.loadQuestion.bind(game)();
+  game.loadQuestion().bind(game);
 });
