@@ -181,5 +181,6 @@ $(document).on("click", "#start", function() {
   
   $("#sub-wrapper").prepend( "<h4 id='done'> You have [ <span id='counter-number'>30</span> ] Seconds</h4>");
   $("#sub-wrapper").prepend("<p> " + $('#name').val() + "</p><br>");
+  $("#sub-wrapper").prepend("<img src='assets/images/now.gif' id='now' >");
   game.loadQuestion().bind(game);
 });
